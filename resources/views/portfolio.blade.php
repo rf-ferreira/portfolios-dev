@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <title>@auth {{ $name }} Portfolio @else Portfolio @endauth</title>
+    <title>@auth {{ $user->name }}'s Portfolio @else Portfolio @endauth</title>
 </head>
 <body>
     <nav>
@@ -16,40 +16,29 @@
     </nav>
     <section id="intro">
         <div class="user-pic">
-            <img src="" alt="">
+            <img src="{{ $getUser->avatar_url }}" alt="My profile picture">
         </div>
         <div class="profile">
-            <h1 class="user-name">User name</h1>
-            <p class="user-desc">This is a description.</p>
-            <a class="user-social" href="https://github.com/"><i class="fa-brands fa-github"></i> github.com</a>
+            <h1 class="user-name">{{ $user->name }}</h1>
+            @if ($getUser->bio)
+                <p class="user-desc">{{ $getUser->bio }}</p>
+            @endif
+            <a class="user-social" target="_blank" href="https://github.com/{{ $user->login }}"><i class="fa-brands fa-github"></i> github.com/{{ $user->login }}</a>
         </div>
     </section>
     <section id="projects">
         <h2 class="title">Projects</h2>
         <div class="projects">
-            <div class="project">
-                <p class="project-desc"><a href="#">This is a project description</a></p>
-            </div>
-            <div class="project">
-                <p class="project-desc"><a href="#">This is a project description</a></p>
-            </div>
-            <div class="project">
-                <p class="project-desc"><a href="#">This is a project description</a></p>
-            </div>
-            <div class="project">
-                <p class="project-desc"><a href="#">This is a project description</a></p>
-            </div>
-            <div class="project">
-                <p class="project-desc"><a href="#">This is a project description</a></p>
-            </div>
-            <div class="project">
-                <p class="project-desc"><a href="#">This is a project description</a></p>
-            </div>
+            @foreach ($userRepos as $repo)
+                <div class="project" style="background-color: {{ $languageColors[$repo->language]['color'] }}">
+                    <p class="project-desc"><a target="_blank" href="https://github.com/{{ $repo->full_name }}"><strong>{{ ucfirst(str_replace(["-", "_"], " ", $repo->name)) }}</strong>{{ $repo->description ? ": " . $repo->description : ""}}</a></p>
+                </div>
+            @endforeach
         </div>
     </section>
     <section id="about-me">
         <h2 class="title">About Me</h2>
-        <p class="about-me-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum natus quasi delectus sit nesciunt animi eum aspernatur fugit. Corrupti dolore ipsum saepe nihil officia unde voluptatum quam totam voluptatibus, minima quis consequatur labore, minus, asperiores ipsam veritatis sit eaque. Incidunt voluptatibus, iste eveniet aperiam, atque, nulla repellat necessitatibus quae possimus rerum itaque fugit quis aspernatur temporibus labore dolorem sapiente vitae exercitationem veniam blanditiis mollitia praesentium provident? Sed dolores repellendus cumque tempore doloremque repudiandae veritatis quis obcaecati illum error id excepturi tenetur blanditiis eius, unde accusamus! Vitae facilis facere aliquid, iure laborum consequuntur sed id, non veniam consectetur exercitationem provident voluptatibus!</p>
+        <p class="about-me-desc">My name is {{ $user->name }}, I'm a software developer.</p>
     </section>
     <section id="contact">
         <h2 class="title">Contact</h2>
