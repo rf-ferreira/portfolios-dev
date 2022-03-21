@@ -20,13 +20,17 @@ class AuthController extends Controller
         $providerUser = Socialite::driver($provider)->user();
 
         $user = User::firstOrCreate(["email" => $providerUser->email],[
-            "login" => $providerUser->user['login'],
             "access_token" => $providerUser->token,
-            "name" => $providerUser->name
+            "avatar" => $providerUser->avatar,
+            "social" => "github.com/{$providerUser->user['login']}",
+            "login" => $providerUser->user['login'],
+            "bio" => $providerUser->user['bio'],
+            "name" => $providerUser->name,
+            "about" => "My name is {$providerUser->name}, I'm a software developer."
         ]);
 
         Auth::login($user, true);
 
-        return redirect()->route('portfolio');
+        return redirect()->route('portfolio.index');
     }
 }

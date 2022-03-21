@@ -19,9 +19,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'access_token',
+        'avatar',
+        'social',
         'login',
+        'bio',
         'name',
         'email',
+        'about'
     ];
 
     /**
@@ -42,4 +46,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function repositories()
+    {
+        return $this->hasMany(Repository::class);
+    }
 }
