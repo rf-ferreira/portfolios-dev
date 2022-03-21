@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Portfolio;
 
 use App\Http\Controllers\Controller;
 use App\Services\GithubService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ViewController extends Controller
 {
@@ -14,9 +13,9 @@ class ViewController extends Controller
         $this->github = $github;
     }
 
-    public function portfolio()
+    public function index()
     {
-        $user = Auth::user();
+        $user = auth()->user();
         $getUser = $this->github->getUser($user);
         $userRepos = $this->github->getUserRepos($user);
         $languageColors = $this->github->getLanguageColors();
@@ -25,7 +24,22 @@ class ViewController extends Controller
             'user', 
             'getUser', 
             'userRepos',
-            'languageColors'
+            'languageColors',
+        ));
+    }
+
+    public function edit()
+    {
+        $user = auth()->user();
+        $getUser = $this->github->getUser($user);
+        $userRepos = $this->github->getUserRepos($user);
+        $languageColors = $this->github->getLanguageColors();
+
+        return view('edit', compact(
+            'user', 
+            'getUser', 
+            'userRepos',
+            'languageColors',
         ));
     }
 }
