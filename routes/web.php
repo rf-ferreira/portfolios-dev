@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\ViewController as AuthViewController;
+use App\Http\Controllers\Portfolio\PortfolioController;
+use App\Http\Controllers\Portfolio\ViewController as PortfolioViewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,15 @@ use App\Http\Controllers\Auth\ViewController as AuthViewController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('login')->middleware('guest');
+Route::view('/', 'welcome')->name('login')->middleware('guest');
 
-Route::get('/portfolio', [AuthViewController::class, 'portfolio'])->name('portfolio')->middleware('auth');
-Route::get('/login/{provider}/redirect', [AuthController::class, 'redirectToProvider'])->name('redirectToProvider');
-Route::get('/login/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
+Route::prefix('/portfolio')->middleware('auth')->group(function() {
+    Route::get('/', [PortfolioViewController::class, 'index'])->name('portfolio.index');
+    Route::get('/edit', [PortfolioViewController::class, 'edit'])->name('portfolio.edit');
+    Route::put('/update/{user}', [PortfolioController::class, 'update'])->name('portfolio.update');
+});
+
+Route::prefix('/login/{provider}')->group(function() {
+    Route::get('/redirect', [AuthController::class, 'redirectToProvider'])->name('redirectToProvider');
+    Route::get('/callback', [AuthController::class, 'handleProviderCallback'])->name('handleProviderCallback');
+});
