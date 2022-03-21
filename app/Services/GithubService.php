@@ -6,6 +6,10 @@ class GithubService
 {
     public function getUserRepos($user)
     {
+        if(!auth()->user()->repositories()->get()->isEmpty()) {
+            return auth()->user()->repositories()->get();
+        }
+
         $reposUrl = 'https://api.github.com/users/' .$user->login. '/repos';
 
         $ch = curl_init();
@@ -22,6 +26,10 @@ class GithubService
 
     public function getUser($user)
     {
+        if(auth()->user()) {
+            return auth()->user();
+        }
+
         $userUrl = 'https://api.github.com/users/' .$user->login;
 
         $ch = curl_init();
