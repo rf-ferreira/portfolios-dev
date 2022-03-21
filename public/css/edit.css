@@ -1,0 +1,87 @@
+.input-edit {
+    height: 25px;
+    width: 220px;
+    font-size: 1rem;
+    display: block;
+}
+
+#intro > button:last-child {
+    position: absolute;
+    bottom: 3px;
+}
+
+#save-btn {
+    padding: 0 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: 2px;
+    position: relative;
+    left: calc(50% - 43.5px);
+    bottom: -17px;
+}
+
+input[name="project-names[]"] {
+    margin-top: 182px;
+    font-size: 0.9rem;
+    height: 20px;
+    width: 247px;
+}
+
+textarea[name="project-descs[]"] {
+    font-size: 0.9rem;
+    width: 247px;
+    height: 40px;
+    max-height: 80px;
+    resize: none;
+}
+
+textarea[name="about-me-desc"] {
+    font-size: 0.9rem;
+    max-width: 700px;
+    width: 700px;
+    height: 400px;
+    margin: 0 auto;
+    resize: none;
+}
+
+.profile > input {
+    margin: 4px 0;
+}
+
+.profile > input:last-child {
+    font-size: 0.9rem;
+}
+
+#send-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: bolder;
+    height: 50px;
+    width: 100px;
+    cursor: pointer;
+    border: none;
+    background-color: rgb(177, 177, 177);
+}
+
+#send-btn:hover {
+    opacity: 0.8;
+}
+
+@media only screen and (max-width: 720px) {
+    textarea[name="about-me-desc"] {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .input-edit {
+        height: 25px;
+        width: 90%;
+    }
+}

@@ -16,7 +16,7 @@
     </nav>
     <section id="intro">
         <div class="user-pic">
-            <img src="{{ $getUser->avatar_url }}" alt="My profile picture">
+            <img src="{{ $user->avatar }}" alt="My profile picture">
         </div>
         <div class="profile">
             <h1 class="user-name">{{ $user->name }}</h1>
@@ -30,8 +30,8 @@
         <h2 class="title">Projects</h2>
         <div class="projects">
             @foreach ($userRepos as $repo)
-                <div class="project" style="background-color: {{ $languageColors[$repo->language]['color'] }}">
-                    <p class="project-desc"><a target="_blank" href="https://github.com/{{ $repo->full_name }}"><strong>{{ ucfirst(str_replace(["-", "_"], " ", $repo->name)) }}</strong>{{ $repo->description ? ": " . $repo->description : ""}}</a></p>
+                <div class="project">
+                    <p class="project-desc"><a target="_blank" href="{{ $repo->html_url }}"><strong>{{ ucfirst(str_replace(["-", "_"], " ", $repo->name)) }}</strong>{{ $repo->description ? ": " . $repo->description : ""}}</a></p>
                 </div>
             @endforeach
         </div>
