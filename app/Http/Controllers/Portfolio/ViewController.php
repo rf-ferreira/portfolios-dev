@@ -16,30 +16,39 @@ class ViewController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $getUser = $this->github->getUser($user);
         $userRepos = $this->github->getUserRepos($user);
-        $languageColors = $this->github->getLanguageColors();
 
         return view('portfolio', compact(
             'user', 
-            'getUser', 
             'userRepos',
-            'languageColors',
         ));
+    }
+
+    public function download()
+    {
+        $user = auth()->user();
+        $userRepos = $this->github->getUserRepos($user);
+
+        return response()->view('download', compact(
+            'user', 
+            'userRepos',
+        ))->header("Content-Disposition", " attachment; filename=portfolio.html");
+    }
+
+    public function css()
+    {
+        header("Content-Disposition: attachment; filename=styles.css");
+        readfile(public_path('css/styles.css'));
     }
 
     public function edit()
     {
         $user = auth()->user();
-        $getUser = $this->github->getUser($user);
         $userRepos = $this->github->getUserRepos($user);
-        $languageColors = $this->github->getLanguageColors();
 
         return view('edit', compact(
             'user', 
-            'getUser', 
             'userRepos',
-            'languageColors',
         ));
     }
 }

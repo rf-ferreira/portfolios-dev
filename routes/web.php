@@ -20,6 +20,8 @@ Route::view('/', 'welcome')->name('login')->middleware('guest');
 
 Route::prefix('/portfolio')->middleware('auth')->group(function() {
     Route::get('/', [PortfolioViewController::class, 'index'])->name('portfolio.index');
+    Route::get('/download', [PortfolioViewController::class, 'download'])->name('portfolio.download');
+    Route::get('/css', [PortfolioViewController::class, 'css'])->name('portfolio.css');
     Route::get('/edit', [PortfolioViewController::class, 'edit'])->name('portfolio.edit');
     Route::put('/update/{user}', [PortfolioController::class, 'update'])->name('portfolio.update');
 });

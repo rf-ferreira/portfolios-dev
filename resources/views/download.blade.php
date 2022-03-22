@@ -6,13 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <title>{{ $user->name }}'s Portfolio</title>
+    <title>@auth {{ $user->name }}'s Portfolio @else Portfolio @endauth</title>
 </head>
 <body>
     <nav>
-        <a href="{{ route('portfolio.download') }}">Download</a>
-        <a href="{{ route('portfolio.css') }}">CSS</a>
-        <a href="{{ route('portfolio.edit') }}">Edit</a>
         <a href="#projects">Projects</a>
         <a href="#about-me">About me</a>
         <a href="#contact">Contact</a>
@@ -26,7 +23,7 @@
             @if ($user->bio)
                 <p class="user-desc">{{ $user->bio }}</p>
             @endif
-            <a class="user-social" target="_blank" href="https://github.com/{{ $user->login }}"><i class="fa-brands fa-github"></i> github.com/{{ $user->login }}</a>
+            <a class="user-social" target="_blank" href="{{ $user->social }}"><i class="fa-brands fa-github"></i> github.com/{{ $user->login }}</a>
         </div>
     </section>
     <section id="projects">
@@ -63,11 +60,5 @@
             <button>Send</button>
         </form>
     </section>
-    {{-- <footer>
-        <div class="links">
-            <a class="user-social" href="https://github.com/"><i class="fa-brands fa-github"></i> github.com</a>
-            <a class="user-social" href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i> linkedin.com</a>
-        </div>
-    </footer> --}}
 </body>
 </html>
