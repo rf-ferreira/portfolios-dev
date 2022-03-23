@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <title>@auth {{ $user->name }}'s Portfolio @else Portfolio @endauth</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>{{ $user->name }}'s Portfolio</title>
 </head>
 <body>
-    <nav>
+    <nav @if($styles) style="background: {{ $styles->nav }}" @endif>
         <a href="#projects">Projects</a>
         <a href="#about-me">About me</a>
         <a href="#contact">Contact</a>
     </nav>
-    <section id="intro">
+    <section id="intro" @if($styles) style="background: {{ $styles->intro }}" @endif>
         <div class="user-pic">
             <img src="{{ $user->avatar }}" alt="My profile picture">
         </div>
@@ -23,10 +23,10 @@
             @if ($user->bio)
                 <p class="user-desc">{{ $user->bio }}</p>
             @endif
-            <a class="user-social" target="_blank" href="{{ $user->social }}"><i class="fa-brands fa-github"></i> github.com/{{ $user->login }}</a>
+            <a class="user-social" target="_blank" href="https://{{ $user->social }}"><i class="fa-brands fa-github"></i> {{ $user->social }}</a>
         </div>
     </section>
-    <section id="projects">
+    <section id="projects" @if($styles) style="background: {{ $styles->projects }}" @endif>
         <h2 class="title">Projects</h2>
         <div class="projects">
             @foreach ($userRepos as $repo)
@@ -36,11 +36,11 @@
             @endforeach
         </div>
     </section>
-    <section id="about-me">
+    <section id="about-me" @if($styles) style="background: {{ $styles->about }}" @endif>
         <h2 class="title">About Me</h2>
         <p class="about-me-desc">My name is {{ $user->name }}, I'm a software developer.</p>
     </section>
-    <section id="contact">
+    <section id="contact" @if($styles) style="background: {{ $styles->contact }}" @endif>
         <h2 class="title">Contact</h2>
         <form action="">
             <div class="form-group">

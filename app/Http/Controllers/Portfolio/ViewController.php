@@ -17,10 +17,12 @@ class ViewController extends Controller
     {
         $user = auth()->user();
         $userRepos = $this->github->getUserRepos($user);
+        $styles = json_decode($user->styles);
 
         return view('portfolio', compact(
             'user', 
             'userRepos',
+            'styles'
         ));
     }
 
@@ -28,10 +30,12 @@ class ViewController extends Controller
     {
         $user = auth()->user();
         $userRepos = $this->github->getUserRepos($user);
+        $styles = json_decode($user->styles);
 
         return response()->view('download', compact(
             'user', 
             'userRepos',
+            'styles'
         ))->header("Content-Disposition", " attachment; filename=portfolio.html");
     }
 
@@ -45,10 +49,12 @@ class ViewController extends Controller
     {
         $user = auth()->user();
         $userRepos = $this->github->getUserRepos($user);
+        $styles = json_decode($user->styles);
 
         return view('edit', compact(
             'user', 
             'userRepos',
+            'styles'
         ));
     }
 }

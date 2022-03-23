@@ -78,4 +78,18 @@
         </div>
     </footer> --}}
 </body>
+@if($styles)
+<script>
+    const nav = document.getElementsByTagName('nav')[0];
+    const intro = document.getElementById('intro'); 
+    const projects = document.getElementById('projects');
+    const about = document.getElementById('about-me');
+    const contact = document.getElementById('contact');
+    nav.style.background = "{{ $styles->nav }}";
+    intro.style.background = "{{ $styles->intro }}";
+    projects.style.background = "{{ $styles->projects }}";
+    about.style.background = "{{ $styles->about }}";
+    contact.style.background = "{{ $styles->contact }}";
+</script>
+@endif
 </html>

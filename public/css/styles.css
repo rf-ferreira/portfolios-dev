@@ -51,13 +51,21 @@ nav > a:hover {
     position: relative;
 }
 
-#intro > .user-pic > img {
+#intro > .user-pic {
     max-width: 150px;
+    max-height: 150px;
     height: 150px;
-    width: fit-content;
+    width: 150px;
     overflow: hidden;
     border-radius: 50%;
     margin-right: 10px;
+}
+
+#intro > .user-pic > img {
+    max-width: 150px;
+    min-width: 150px;
+    width: fit-content;
+    min-height: 150px;
     box-shadow: 0 3px 3px rgba(0,0,0,0.2);
 }
 

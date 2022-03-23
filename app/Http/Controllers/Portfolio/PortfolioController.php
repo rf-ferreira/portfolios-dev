@@ -49,4 +49,11 @@ class PortfolioController extends Controller
 
         return true;
     }
+
+    public function saveStyles(Request $request)
+    {
+        User::where('id', auth()->user()->id)->update(["styles" => $request->colors]);
+
+        return response()->json(["success" => "styles added"], 200);
+    }
 }

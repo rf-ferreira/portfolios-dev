@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>{{ $user->name }}'s Portfolio</title>
 </head>
 <body>
     <nav>
+        <a href="#" id="randomBtn">Random</a>
         <a href="{{ route('portfolio.download') }}">Download</a>
         <a href="{{ route('portfolio.css') }}">CSS</a>
         <a href="{{ route('portfolio.edit') }}">Edit</a>
@@ -26,7 +29,7 @@
             @if ($user->bio)
                 <p class="user-desc">{{ $user->bio }}</p>
             @endif
-            <a class="user-social" target="_blank" href="https://github.com/{{ $user->login }}"><i class="fa-brands fa-github"></i> github.com/{{ $user->login }}</a>
+            <a class="user-social" target="_blank" href="https://{{ $user->social }}"><i class="fa-brands fa-github"></i> {{ $user->social }}</a>
         </div>
     </section>
     <section id="projects">
@@ -69,5 +72,27 @@
             <a class="user-social" href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i> linkedin.com</a>
         </div>
     </footer> --}}
+<script src="{{ asset('js/randomColors.js') }}"></script>
+<script>
+    function saveStyles(colors) {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: "{{ route('portfolio.saveStyles') }}",
+            type: "put",
+            data: {colors: colors}
+        });
+    }
+</script>
+@if($styles)
+<script>
+    nav.style.background = "{{ $styles->nav }}";
+    intro.style.background = "{{ $styles->intro }}";
+    projects.style.background = "{{ $styles->projects }}";
+    about.style.background = "{{ $styles->about }}";
+    contact.style.background = "{{ $styles->contact }}";
+</script>
+@endif
 </body>
 </html>

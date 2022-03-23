@@ -24,6 +24,7 @@ Route::prefix('/portfolio')->middleware('auth')->group(function() {
     Route::get('/css', [PortfolioViewController::class, 'css'])->name('portfolio.css');
     Route::get('/edit', [PortfolioViewController::class, 'edit'])->name('portfolio.edit');
     Route::put('/update/{user}', [PortfolioController::class, 'update'])->name('portfolio.update');
+    Route::put('/', [PortfolioController::class, 'saveStyles'])->name('portfolio.saveStyles');
 });
 
 Route::prefix('/login/{provider}')->group(function() {
