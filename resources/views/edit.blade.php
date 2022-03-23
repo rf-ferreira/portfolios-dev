@@ -47,7 +47,7 @@
         </section>
         <section id="about-me">
             <h2 class="title">About Me</h2>
-            <textarea rows="30" class="input-edit" name="about-me-desc" placeholder="Project description">My name is {{ $user->name }}, I'm a software developer.</textarea>
+            <textarea rows="30" class="input-edit" name="about-me-desc" placeholder="Project description">{{ $user->about }}</textarea>
             <button id="save-btn">Save</button>
         </section>
     </form>

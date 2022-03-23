@@ -38,7 +38,7 @@
     </section>
     <section id="about-me" @if($styles) style="background: {{ $styles->about }}" @endif>
         <h2 class="title">About Me</h2>
-        <p class="about-me-desc">My name is {{ $user->name }}, I'm a software developer.</p>
+        <p class="about-me-desc">{{ $user->about }}</p>
     </section>
     <section id="contact" @if($styles) style="background: {{ $styles->contact }}" @endif>
         <h2 class="title">Contact</h2>
