@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
-    <title>{{ $user->name }}'s Portfolio</title>
+    <title>{{ explode(" ", $user->name)[0] }}'s Portfolio</title>
 </head>
 <body>
     <nav>
@@ -45,8 +45,10 @@
                         <input type="hidden" name="project-ids[]" value="{{ $repo->id }}">
                         <input type="hidden" name="project-langs[]" value="{{ $repo->language }}">
                         <input type="hidden" name="project-urls[]" value="{{ $repo->html_url }}">
-                        <input type="text" name="project-names[]" value="{{ ucfirst(str_replace(["-", "_"], " ", $repo->name)) }}">
-                        <textarea rows="2" class="input-edit" name="project-descs[]" placeholder="Project description">{{ $repo->description ? $repo->description : ""}}</textarea>
+                        <div class="project-inputs">
+                            <input type="text" name="project-names[]" value="{{ ucfirst(str_replace(["-", "_"], " ", $repo->name)) }}">
+                            <textarea rows="2" class="input-edit" name="project-descs[]" placeholder="Project description">{{ $repo->description ? $repo->description : ""}}</textarea>
+                        </div>
                     </div>
                 @endforeach
             </div>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>{{ $user->name }}'s Portfolio</title>
+    <title>{{ explode(" ", $user->name)[0] }}'s Portfolio</title>
 </head>
 <body>
     <nav>

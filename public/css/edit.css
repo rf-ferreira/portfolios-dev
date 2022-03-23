@@ -24,16 +24,28 @@
     filter: drop-shadow(0 3px 3px rgba(0,0,0,0.2));
 }
 
+#save-btn:hover {
+    background-color: #d0d0d7;
+}
+
+.projects > .project {
+    justify-content: space-between;
+}
+
+.project > .project-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
 input[name="project-names[]"] {
-    margin-top: 165px;
     font-size: 0.9rem;
+    width: inherit;
     height: 20px;
-    width: 247px;
 }
 
 textarea[name="project-descs[]"] {
     font-size: 0.9rem;
-    width: 249px;
+    width: inherit;
     height: 40px;
     max-height: 80px;
     resize: none;

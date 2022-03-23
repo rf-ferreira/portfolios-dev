@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <title>{{ $user->name }}'s Portfolio</title>
+    <title>{{ explode(" ", $user->name)[0] }}'s Portfolio</title>
 </head>
 <body>
     <nav @if($styles) style="background: {{ $styles->nav }}" @endif>
