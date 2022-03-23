@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
-    <title>@auth {{ $user->name }}'s Portfolio @else Portfolio @endauth</title>
+    <title>{{ $user->name }}'s Portfolio</title>
 </head>
 <body>
     <nav>
+        <a href="{{ route('portfolio.index') }}">Portfolio</a>
         <a href="#projects">Projects</a>
         <a href="#about-me">About me</a>
         <a href="#contact">Contact</a>
@@ -32,9 +33,15 @@
         </section>
         <section id="projects">
             <h2 class="title">Projects</h2>
+            <div id="reload-repos">
+                <button name="reload-repos">Reload Repositories</button>
+            </div>
             <div class="projects">
                 @foreach ($userRepos as $repo)
                     <div class="project">
+                        <div class="delete-project">
+                            <i onclick="deleteProject(this)" class="fa-solid fa-trash-can"></i>
+                        </div>
                         <input type="hidden" name="project-ids[]" value="{{ $repo->id }}">
                         <input type="hidden" name="project-langs[]" value="{{ $repo->language }}">
                         <input type="hidden" name="project-urls[]" value="{{ $repo->html_url }}">
@@ -77,19 +84,20 @@
             <a class="user-social" href="https://linkedin.com/"><i class="fa-brands fa-linkedin"></i> linkedin.com</a>
         </div>
     </footer> --}}
+    <script src="{{ asset('js/edit.js') }}"></script>
+    @if($styles)
+    <script>
+        const nav = document.getElementsByTagName('nav')[0];
+        const intro = document.getElementById('intro'); 
+        const projects = document.getElementById('projects');
+        const about = document.getElementById('about-me');
+        const contact = document.getElementById('contact');
+        nav.style.background = "{{ $styles->nav }}";
+        intro.style.background = "{{ $styles->intro }}";
+        projects.style.background = "{{ $styles->projects }}";
+        about.style.background = "{{ $styles->about }}";
+        contact.style.background = "{{ $styles->contact }}";
+    </script>
+    @endif
 </body>
-@if($styles)
-<script>
-    const nav = document.getElementsByTagName('nav')[0];
-    const intro = document.getElementById('intro'); 
-    const projects = document.getElementById('projects');
-    const about = document.getElementById('about-me');
-    const contact = document.getElementById('contact');
-    nav.style.background = "{{ $styles->nav }}";
-    intro.style.background = "{{ $styles->intro }}";
-    projects.style.background = "{{ $styles->projects }}";
-    about.style.background = "{{ $styles->about }}";
-    contact.style.background = "{{ $styles->contact }}";
-</script>
-@endif
 </html>

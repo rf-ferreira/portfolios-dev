@@ -11,6 +11,12 @@ class PortfolioController extends Controller
 {
     public function update(Request $request)
     {
+        if($request->has('reload-repos')) {
+            Repository::where('user_id', auth()->user()->id)->delete();
+
+            return redirect()->route('portfolio.edit');
+        }
+
         $this->updateUser($request);
         $this->updateRepos($request);
 
@@ -36,6 +42,11 @@ class PortfolioController extends Controller
         $projectNames = $request->input('project-names');
         $projectDescriptions = $request->input('project-descs');
         $projectLanguages = $request->input('project-langs');
+        $deletedProjects = $request->input('deleted-projects');
+
+        if($deletedProjects !== null) {
+            $this->deleteProjects($deletedProjects);
+        }
         
         for($i = 0; $i < count($projectNames); $i++) {
             Repository::updateOrCreate(['id' => $projectIds[$i], 'user_id' => auth()->user()->id],[
@@ -50,6 +61,13 @@ class PortfolioController extends Controller
         return true;
     }
 
+    private function deleteProjects($deletedProjects)
+    {
+        for($i = 0; $i < count($deletedProjects); $i++) {
+            Repository::where('user_id', auth()->user()->id)->where('id', $deletedProjects[$i])->delete($deletedProjects[$i]);
+        }
+    }
+    
     public function saveStyles(Request $request)
     {
         User::where('id', auth()->user()->id)->update(["styles" => $request->colors]);

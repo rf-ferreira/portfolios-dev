@@ -12,7 +12,7 @@
 
 #save-btn {
     padding: 0 20px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
     height: 30px;
     cursor: pointer;
@@ -21,10 +21,11 @@
     position: relative;
     left: calc(50% - 43.5px);
     bottom: -17px;
+    filter: drop-shadow(0 3px 3px rgba(0,0,0,0.2));
 }
 
 input[name="project-names[]"] {
-    margin-top: 182px;
+    margin-top: 165px;
     font-size: 0.9rem;
     height: 20px;
     width: 247px;
@@ -32,7 +33,7 @@ input[name="project-names[]"] {
 
 textarea[name="project-descs[]"] {
     font-size: 0.9rem;
-    width: 247px;
+    width: 249px;
     height: 40px;
     max-height: 80px;
     resize: none;
@@ -55,17 +56,49 @@ textarea[name="about-me-desc"] {
     font-size: 0.9rem;
 }
 
+#reload-repos {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1040px;
+}
+
+#reload-repos > button {
+    cursor: pointer;
+    padding: 5px;
+    font-weight: bold;
+    border: none;
+    filter: drop-shadow(0 3px 3px rgba(0,0,0,0.2));
+}
+
+.delete-project {
+    display: flex;
+    justify-content: end;
+    font-size: 1rem;
+    color: #dc3545;
+    padding-right: 5px;
+    padding-top: 2px;
+}
+
+.delete-project > i {
+    cursor: pointer;
+}
+
+.delete-project > i:hover {
+    opacity: 0.8;
+}
+
 #send-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bolder;
-    height: 50px;
-    width: 100px;
+    padding: 10px 20px;
     cursor: pointer;
     border: none;
+    border-radius: 2px;
     background-color: rgb(177, 177, 177);
 }
 
