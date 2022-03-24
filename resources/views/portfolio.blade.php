@@ -14,44 +14,26 @@
 <body>
     <nav>
         <a href="{{ route('portfolio.preview', auth()->user()->login) }}">Preview</a>
-        <a href="#" id="tools" class="tools">Tools</a>
+        <a href="#" id="tools">Tools</a>
         <a href="{{ route('portfolio.edit') }}">Edit</a>
         <a href="#projects">Projects</a>
         <a href="#about-me">About me</a>
         <a href="#contact">Contact</a>
     </nav>
     <section id="intro">
-        <div id="toolbox" class="tools" style="display: none">
+        <div id="toolbox" style="display: none">
             <div class="t-random-colors">
                 <h3>Random colors</h3>
-                <p id="randomBtn">All</p>
                 <ul>
-                    <li>menu</li>
-                    <li>user</li>
-                    <li>projects</li>
-                    <li>about</li>
-                    <li>contact</li>
-                </ul>
-                <p>All texts</p>
-                <ul>
-                    <li>menu</li>
-                    <li>user</li>
-                    <li>projects</li>
-                    <li>about</li>
-                    <li>contact</li>
-                </ul>
-            </div>
-            <div class="t-random-background">
-                <h3>Random Background</h3>
-                <ul>
-                    <li>user</li>
+                    <li id="randomBtn">Generate</li>
+                    <li id="defaultColors">Default</li>
                 </ul>
             </div>
             <div class="t-download">
                 <h3>Download</h3>
                 <ul>
-                    <li>html</li>
-                    <li>css</li>
+                    <li><i class="fa-brands fa-html5"></i> <a href="{{ route('portfolio.download') }}">Html</a></li>
+                    <li><i class="fa-brands fa-css3-alt"></i> <a href="{{ route('portfolio.css') }}">Css</a></li>
                 </ul>
             </div>
         </div>
@@ -129,8 +111,15 @@
 </script>
 @endif
 <script>
-    const tools = document.querySelector('.tools');
-    tools.onclick = () => document.getElementById('toolbox').style.display = 'block';
+    const tools = document.getElementById('tools');
+    const toolbox = document.getElementById('toolbox');
+    tools.onclick = () => {
+        if(toolbox.style.display === 'none') {
+            toolbox.style.display = 'block'; 
+        } else {
+            toolbox.style.display = 'none'; 
+        }
+    };
 </script>
 </body>
 </html>

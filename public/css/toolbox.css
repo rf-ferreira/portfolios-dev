@@ -6,8 +6,7 @@
     flex-direction: column;
     position: absolute;
     z-index: 1;
-    top: 0;
-    left: calc(78% - 150px);
+    top: 10px;
 }
 
 #toolbox a {
