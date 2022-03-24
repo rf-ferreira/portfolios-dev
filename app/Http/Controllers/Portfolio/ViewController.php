@@ -57,4 +57,23 @@ class ViewController extends Controller
             'styles'
         ));
     }
+
+    public function preview($userLogin)
+    {
+        if($userLogin !== auth()->user()->login) {
+            return redirect()->route('portfolio.index');
+        }
+
+        $user = auth()->user();
+        $userRepos = $this->github->getUserRepos($user);
+        $styles = json_decode($user->styles);
+        $preview = true;
+
+        return view('download', compact(
+            'user', 
+            'userRepos',
+            'styles',
+            'preview'
+        ));
+    }
 }
