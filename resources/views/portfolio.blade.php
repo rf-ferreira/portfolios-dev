@@ -7,20 +7,54 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toolbox.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>{{ explode(" ", $user->name)[0] }}'s Portfolio</title>
 </head>
 <body>
     <nav>
-        <a href="#" id="randomBtn">Random</a>
-        <a href="{{ route('portfolio.download') }}">Download</a>
-        <a href="{{ route('portfolio.css') }}">CSS</a>
+        <a href="{{ route('portfolio.preview', auth()->user()->login) }}">Preview</a>
+        <a href="#" id="tools" class="tools">Tools</a>
         <a href="{{ route('portfolio.edit') }}">Edit</a>
         <a href="#projects">Projects</a>
         <a href="#about-me">About me</a>
         <a href="#contact">Contact</a>
     </nav>
     <section id="intro">
+        <div id="toolbox" class="tools" style="display: none">
+            <div class="t-random-colors">
+                <h3>Random colors</h3>
+                <p id="randomBtn">All</p>
+                <ul>
+                    <li>menu</li>
+                    <li>user</li>
+                    <li>projects</li>
+                    <li>about</li>
+                    <li>contact</li>
+                </ul>
+                <p>All texts</p>
+                <ul>
+                    <li>menu</li>
+                    <li>user</li>
+                    <li>projects</li>
+                    <li>about</li>
+                    <li>contact</li>
+                </ul>
+            </div>
+            <div class="t-random-background">
+                <h3>Random Background</h3>
+                <ul>
+                    <li>user</li>
+                </ul>
+            </div>
+            <div class="t-download">
+                <h3>Download</h3>
+                <ul>
+                    <li>html</li>
+                    <li>css</li>
+                </ul>
+            </div>
+        </div>
         <div class="user-pic">
             <img src="{{ $user->avatar }}" alt="My profile picture">
         </div>
@@ -94,5 +128,9 @@
     contact.style.background = "{{ $styles->contact }}";
 </script>
 @endif
+<script>
+    const tools = document.querySelector('.tools');
+    tools.onclick = () => document.getElementById('toolbox').style.display = 'block';
+</script>
 </body>
 </html>

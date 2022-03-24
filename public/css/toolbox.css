@@ -1,0 +1,35 @@
+#toolbox {
+    font-size: 0.9rem;
+    width: 164px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: calc(78% - 150px);
+}
+
+#toolbox a {
+    color: black;
+    text-decoration: none;
+}
+
+#toolbox a:hover {
+    opacity: 0.85;
+}
+
+#toolbox ul {
+    list-style-type: none;
+}
+
+#toolbox li {
+    padding-left: 10px;
+}
+
+#toolbox h3, 
+#toolbox li, 
+#toolbox p {
+    cursor: pointer;
+    width: fit-content;
+}
