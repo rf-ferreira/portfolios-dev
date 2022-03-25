@@ -14,7 +14,25 @@
 <body>
     <nav>
         <a href="{{ route('portfolio.preview', auth()->user()->login) }}">Preview</a>
-        <a href="#" id="tools">Tools</a>
+        <div id="tools">
+            <a href="#">Tools</a>
+            <div id="toolbox">
+                <div class="t-random-colors">
+                    <h3>Random colors</h3>
+                    <ul>
+                        <li id="randomBtn">Generate</li>
+                        <li id="defaultColors">Default</li>
+                    </ul>
+                </div>
+                <div class="t-download">
+                    <h3>Download</h3>
+                    <ul>
+                        <li><i class="fa-brands fa-html5"></i> <a href="{{ route('portfolio.download') }}">Html</a></li>
+                        <li><i class="fa-brands fa-css3-alt"></i> <a href="{{ route('portfolio.css') }}">Css</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <a href="{{ route('portfolio.edit') }}">Edit</a>
         <a href="#projects">Projects</a>
         <a href="#about-me">About me</a>
@@ -112,16 +130,5 @@
     contact.style.background = "{{ $styles->contact }}";
 </script>
 @endif
-<script>
-    const tools = document.getElementById('tools');
-    const toolbox = document.getElementById('toolbox');
-    tools.onclick = () => {
-        if(toolbox.style.display === 'none') {
-            toolbox.style.display = 'block'; 
-        } else {
-            toolbox.style.display = 'none'; 
-        }
-    };
-</script>
 </body>
 </html>
