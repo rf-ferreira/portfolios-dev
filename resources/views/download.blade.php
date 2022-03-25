@@ -19,9 +19,11 @@
         <a href="#contact">Contact</a>
     </nav>
     <section id="intro" @if($styles) style="background: {{ $styles->intro }}" @endif>
+        @if($user->avatar)
         <div class="user-pic">
             <img src="{{ $user->avatar }}" alt="My profile picture">
         </div>
+        @endif
         <div class="profile">
             <h1 class="user-name">{{ $user->name }}</h1>
             @if ($user->bio)

@@ -23,14 +23,16 @@
             @error('error')
                 <p class="error">{{ $message }}</p>
             @enderror
+            @if($user->avatar)
             <div class="user-pic">
                 <img src="{{ $user->avatar }}" alt="My profile picture">
-                <input type="hidden" name="user-pic" value="{{ $user->avatar }}">
             </div>
+            @endif
             <div class="profile">
                 <input type="text" class="input-edit" name="user-name" value="{{ $user->name }}" placeholder="User name">
                 <input type="text" class="input-edit" name="user-desc" value="{{ $user->bio }}" placeholder="User description">
-                <input type="text" class="input-edit" name="user-social" value="{{ $user->social }}" placeholder="Social media">
+                <input type="text" class="input-edit fs-09" name="user-social" value="{{ $user->social }}" placeholder="Social media">
+                <input type="text" class="input-edit fs-09" name="user-pic" value="{{ $user->avatar }}" placeholder="Image URL">
             </div>
             <button id="save-btn">Save</button>
         </section>
