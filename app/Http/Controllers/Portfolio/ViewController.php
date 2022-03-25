@@ -50,11 +50,13 @@ class ViewController extends Controller
         $user = auth()->user();
         $userRepos = $this->github->getUserRepos($user);
         $styles = json_decode($user->styles);
+        $maxRepos = count($userRepos) > 8 ? true : false;
 
         return view('edit', compact(
             'user', 
             'userRepos',
-            'styles'
+            'styles',
+            'maxRepos'
         ));
     }
 

@@ -20,6 +20,9 @@
         @csrf
         @method('PUT')
         <section id="intro">
+            @error('error')
+                <p class="error">{{ $message }}</p>
+            @enderror
             <div class="user-pic">
                 <img src="{{ $user->avatar }}" alt="My profile picture">
                 <input type="hidden" name="user-pic" value="{{ $user->avatar }}">
@@ -33,6 +36,9 @@
         </section>
         <section id="projects">
             <h2 class="title">Projects</h2>
+            @if($maxRepos)
+            <p>You can save a maximum of 8 projects.</p>
+            @endif
             <div id="reload-repos">
                 <button name="reload-repos">Reload Repositories</button>
             </div>

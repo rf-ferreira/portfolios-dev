@@ -31,6 +31,8 @@ class AuthController extends Controller
 
         Auth::login($user, true);
 
+        User::where('id', auth()->user()->id)->update(['access_token' => $providerUser->token]);
+
         return redirect()->route('portfolio.index');
     }
 }

@@ -17,6 +17,10 @@ class PortfolioController extends Controller
             return redirect()->route('portfolio.edit');
         }
 
+        if(count($request->input('project-names')) > 8) {
+            return redirect()->route('portfolio.edit')->withErrors(["error" => "You can save a maximum of 8 projects."]);
+        }
+
         $this->updateUser($request);
         $this->updateRepos($request);
 
