@@ -37,6 +37,7 @@
         <a href="#projects">Projects</a>
         <a href="#about-me">About me</a>
         <a href="#contact">Contact</a>
+        <a href="{{ route('logout') }}">Logout</a>
     </nav>
     <section id="intro">
         <div id="toolbox" style="display: none">

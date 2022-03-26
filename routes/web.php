@@ -33,3 +33,5 @@ Route::prefix('/login/{provider}')->group(function() {
     Route::get('/redirect', [AuthController::class, 'redirectToProvider'])->name('redirectToProvider');
     Route::get('/callback', [AuthController::class, 'handleProviderCallback'])->name('handleProviderCallback');
 });
+
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
