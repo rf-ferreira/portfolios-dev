@@ -15,8 +15,6 @@ nav {
     align-items: center;
     height: 50px;
     background-color: rgb(77, 77, 77);
-    filter: drop-shadow(0 3px 3px rgba(0,0,0,0.2));
-    position: relative;
 }
 
 nav > a {
@@ -63,10 +61,17 @@ nav > a:hover {
 }
 
 #intro > .user-pic > img {
+    /* display: flex;
+    align-items: center; */
     max-width: 150px;
     min-width: 150px;
     width: fit-content;
     min-height: 150px;
+}
+
+#intro > .profile > .user-desc {
+    max-width: 500px;
+    overflow-wrap: break-word;
 }
 
 #intro > .profile > .user-social {
@@ -98,6 +103,7 @@ nav > a:hover {
 .projects > .project {
     width: 250px;
     height: 250px;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -245,8 +251,12 @@ footer > .links > a:hover {
 }
 
 @media only screen and (max-width: 720px) {
+    #intro > .profile > .user-desc {
+        max-width: 300px;
+    }
+    
     #about-me > .about-me-desc {
-        width: 90%;
+        max-width: 90%;
     }
 
     #contact > form {
@@ -268,6 +278,14 @@ footer > .links > a:hover {
 }
 
 @media only screen and (max-width: 550px) {
+    #intro {
+        flex-direction: column;
+    }
+
+    #intro > .profile {
+        text-align: center;
+    }
+
     #projects {
         flex-direction: column;
     }
