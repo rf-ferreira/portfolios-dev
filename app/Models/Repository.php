@@ -14,7 +14,8 @@ class Repository extends Model
         "html_url",
         "name",
         "description",
-        "language"
+        "language",
+        "image"
     ];
 
     public function user()

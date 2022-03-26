@@ -46,6 +46,7 @@ class PortfolioController extends Controller
         $projectNames = $request->input('project-names');
         $projectDescriptions = $request->input('project-descs');
         $projectLanguages = $request->input('project-langs');
+        $projectImages = $request->input('project-images');
         $deletedProjects = $request->input('deleted-projects');
 
         if($deletedProjects !== null) {
@@ -58,7 +59,8 @@ class PortfolioController extends Controller
                 "html_url" => $projectUrls[$i],
                 "name" => $projectNames[$i],
                 "description" => $projectDescriptions[$i],
-                "language" => $projectLanguages[$i]
+                "language" => $projectLanguages[$i],
+                "image" => $projectImages[$i]
             ]);
         }
 
