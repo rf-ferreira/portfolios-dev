@@ -36,7 +36,7 @@
         <h2 class="title">Projects</h2>
         <div class="projects">
             @foreach ($userRepos as $repo)
-                <div class="project" @if($repo->image) style="background-image: url('{{ $repo->image }}')" @endif>
+                <div class="project" @if(isset($repo->image)) style="background-image: url('{{ $repo->image }}')" @endif>
                     <p class="project-desc"><a target="_blank" href="{{ $repo->html_url }}"><strong>{{ ucfirst(str_replace(["-", "_"], " ", $repo->name)) }}</strong>{{ $repo->description ? ": " . $repo->description : ""}}</a></p>
                 </div>
             @endforeach

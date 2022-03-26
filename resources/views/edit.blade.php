@@ -46,14 +46,14 @@
             </div>
             <div class="projects">
                 @foreach ($userRepos as $repo)
-                    <div class="project" @if($repo->image) style="background-image: url('{{ $repo->image }}')" @endif>
+                    <div class="project" @if(isset($repo->image)) style="background-image: url('{{ $repo->image }}')" @endif>
                         <div class="delete-project">
                             <i onclick="deleteProject(this)" class="fa-solid fa-trash-can"></i>
                         </div>
                         <input type="hidden" name="project-ids[]" value="{{ $repo->id }}">
                         <input type="hidden" name="project-langs[]" value="{{ $repo->language }}">
                         <input type="hidden" name="project-urls[]" value="{{ $repo->html_url }}">
-                        <input type="text" name="project-images[]" value="{{ $repo->image }}" placeholder="Project image">
+                        <input type="text" name="project-images[]" value="{{ $repo->image ?? '' }}" placeholder="Project image">
                         <div class="project-inputs">
                             <input type="text" name="project-names[]" value="{{ ucfirst(str_replace(["-", "_"], " ", $repo->name)) }}">
                             <textarea rows="2" class="input-edit" name="project-descs[]" placeholder="Project description">{{ $repo->description ? $repo->description : ""}}</textarea>
