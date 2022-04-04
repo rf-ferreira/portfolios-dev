@@ -6,9 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-    <title>Portfolio Generator</title>
+    <title>Portfolios Dev</title>
     <style>
-        button {
+        main {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            flex-direction: column;
+            height: calc(100vh - 50px);
+            background-color: rgb(136, 136, 136);
+        }
+        #search {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        #search input {
+            height: 20px;
+        }
+        #search button {
+            cursor: pointer;
+        }
+        #login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #login button {
             border: none;
             border-radius: 2px;
             height: 30px;
@@ -19,21 +45,12 @@
             background-color: #238636;
         }
 
-        button:hover {
+        #login button:hover {
             cursor: pointer;
             background-color: #2EA043;
         }
 
-        form {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            height: calc(100vh - 50px);
-            background-color: rgb(136, 136, 136);
-        }
-
-        form p {
+        p {
             text-align: center;
             padding-bottom: 5px;
         }
@@ -45,10 +62,22 @@
 </head>
 <body>
     <nav></nav>
-    <form action="{{ route('redirectToProvider', 'github') }}">
-    @csrf
-    <p>Generates a <strong>portfolio page</strong> using your github repositories as your projects.</p>
-    <button><i class="fa-brands fa-github"></i> Login with GitHub</button>
-    </form>
+    <main>
+        @error('userNotFound')
+            <div class="alert alert-danger">
+                <p>{{ $message }}</p>
+            </div>
+        @enderror
+        <form id="search" action="{{ route('searchUser') }}" method="post">
+            @csrf
+            <input type="text" name="user" placeholder="Search github username">
+            <button>Search</button>
+        </form>
+        <form id="login" action="{{ route('redirectToProvider', 'github') }}">
+            @csrf
+            <p>Create a <strong>portfolio page</strong> using your github repositories as your projects.</p>
+            <button><i class="fa-brands fa-github"></i> Login with GitHub</button>
+        </form>
+    </main>
 </body>
 </html>

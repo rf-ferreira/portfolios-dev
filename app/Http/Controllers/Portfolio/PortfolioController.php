@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
 {
+    public function searchUser(Request $request)
+    {
+        $user = User::where('login', trim($request->user))->first();
+        
+        if($user) {
+            return redirect()->route('portfolio.preview', $user->login);
+        }
+
+        return back()->withErrors(["userNotFound" => "User not found."]);
+    }
+
     public function update(Request $request)
     {
         if($request->has('reload-repos')) {

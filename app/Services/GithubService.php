@@ -2,38 +2,20 @@
 
 namespace App\Services;
 
+use App\Models\User;
+
 class GithubService
 {
     public function getUserRepos($user)
     {
-        if(!auth()->user()->repositories()->get()->isEmpty()) {
-            return auth()->user()->repositories()->get();
+        if(!$user->repositories()->get()->isEmpty()) {
+            return $user->repositories()->get();
         }
 
         $reposUrl = 'https://api.github.com/users/' .$user->login. '/repos';
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $reposUrl);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->getHeaders($user));
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        
-        $response = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response);
-
-        return $response;
-    }
-
-    public function getUser($user)
-    {
-        if(auth()->user()) {
-            return auth()->user();
-        }
-
-        $userUrl = 'https://api.github.com/users/' .$user->login;
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $userUrl);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $this->getHeaders($user));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         
@@ -62,7 +44,7 @@ class GithubService
     private function getHeaders($user): array
     {
         return [
-            "User-agent: Portfolio Generator",
+            "User-agent: Portfolios Dev",
             "Accept: application/vnd.github.v3+json",
             "Authorization: token {$user->access_token}"
         ];

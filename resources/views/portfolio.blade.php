@@ -24,13 +24,6 @@
                         <li id="defaultColors">Default</li>
                     </ul>
                 </div>
-                <div class="t-download">
-                    <h3>Download</h3>
-                    <ul>
-                        <li><i class="fa-brands fa-html5"></i> <a href="{{ route('portfolio.download') }}">Html</a></li>
-                        <li><i class="fa-brands fa-css3-alt"></i> <a href="{{ route('portfolio.css') }}">Css</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         <a href="{{ route('portfolio.edit') }}">Edit</a>
@@ -40,22 +33,6 @@
         <a href="{{ route('logout') }}">Logout</a>
     </nav>
     <section id="intro">
-        <div id="toolbox" style="display: none">
-            <div class="t-random-colors">
-                <h3>Random colors</h3>
-                <ul>
-                    <li id="randomBtn">Generate</li>
-                    <li id="defaultColors">Default</li>
-                </ul>
-            </div>
-            <div class="t-download">
-                <h3>Download</h3>
-                <ul>
-                    <li><i class="fa-brands fa-html5"></i> <a href="{{ route('portfolio.download') }}">Html</a></li>
-                    <li><i class="fa-brands fa-css3-alt"></i> <a href="{{ route('portfolio.css') }}">Css</a></li>
-                </ul>
-            </div>
-        </div>
         @if($user->avatar)
         <div class="user-pic">
             <img src="{{ $user->avatar }}" alt="My profile picture">

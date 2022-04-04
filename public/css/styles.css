@@ -165,13 +165,13 @@ nav > a:hover {
     height: 22px;
     width: 280px;
     font-size: 1rem;
-    filter: drop-shadow(0 3px 3px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
 }
 
 #contact > form > input {
     height: 22px;
     font-size: 1rem;
-    filter: drop-shadow(0 3px 3px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
 }
 
 #contact > form > label {
@@ -206,7 +206,7 @@ nav > a:hover {
 }
 
 #contact > form > button:hover {
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 footer {

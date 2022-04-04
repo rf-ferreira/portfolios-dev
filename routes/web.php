@@ -18,16 +18,8 @@ use App\Http\Controllers\Portfolio\ViewController as PortfolioViewController;
 
 Route::view('/', 'welcome')->name('login')->middleware('guest');
 
-Route::prefix('/portfolio')->middleware('auth')->group(function() {
-    Route::get('/', [PortfolioViewController::class, 'index'])->name('portfolio.index');
-    Route::get('/download', [PortfolioViewController::class, 'download'])->name('portfolio.download');
-    Route::get('/css', [PortfolioViewController::class, 'css'])->name('portfolio.css');
-    Route::get('/edit', [PortfolioViewController::class, 'edit'])->name('portfolio.edit');
-    Route::get('/preview/{user}', [PortfolioViewController::class, 'preview'])->name('portfolio.preview');
-
-    Route::put('/update/{user}', [PortfolioController::class, 'update'])->name('portfolio.update');
-    Route::put('/', [PortfolioController::class, 'saveStyles'])->name('portfolio.saveStyles');
-});
+Route::post('/searchUser', [PortfolioController::class, 'searchUser'])->name('searchUser');
+Route::get('/user/{user}', [PortfolioViewController::class, 'preview'])->name('portfolio.preview');
 
 Route::prefix('/login/{provider}')->group(function() {
     Route::get('/redirect', [AuthController::class, 'redirectToProvider'])->name('redirectToProvider');
@@ -35,3 +27,11 @@ Route::prefix('/login/{provider}')->group(function() {
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::prefix('/portfolio')->middleware('auth')->group(function() {
+    Route::get('/', [PortfolioViewController::class, 'index'])->name('portfolio.index');
+    Route::get('/edit', [PortfolioViewController::class, 'edit'])->name('portfolio.edit');
+
+    Route::put('/update/{user}', [PortfolioController::class, 'update'])->name('portfolio.update');
+    Route::put('/', [PortfolioController::class, 'saveStyles'])->name('portfolio.saveStyles');
+});

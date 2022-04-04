@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Portfolio;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Services\GithubService;
 use Illuminate\Http\Request;
 
@@ -26,25 +27,26 @@ class ViewController extends Controller
         ));
     }
 
-    public function download()
+    public function preview($user)
     {
-        $user = auth()->user();
+        $user = User::where('login', trim($user))->first();
+
+        if(!$user) {
+            return redirect('/')->withErrors(["userNotFound" => "User not found."]);
+        }
+
         $userRepos = $this->github->getUserRepos($user);
         $styles = json_decode($user->styles);
+        $preview = true;
 
-        return response()->view('download', compact(
+        return view('preview', compact(
             'user', 
             'userRepos',
-            'styles'
-        ))->header("Content-Disposition", " attachment; filename=portfolio.html");
+            'styles',
+            'preview'
+        ));
     }
-
-    public function css()
-    {
-        header("Content-Disposition: attachment; filename=styles.css");
-        readfile(public_path('css/styles.css'));
-    }
-
+    
     public function edit()
     {
         $user = auth()->user();
@@ -57,25 +59,6 @@ class ViewController extends Controller
             'userRepos',
             'styles',
             'maxRepos'
-        ));
-    }
-
-    public function preview($userLogin)
-    {
-        if($userLogin !== auth()->user()->login) {
-            return redirect()->route('portfolio.index');
-        }
-
-        $user = auth()->user();
-        $userRepos = $this->github->getUserRepos($user);
-        $styles = json_decode($user->styles);
-        $preview = true;
-
-        return view('download', compact(
-            'user', 
-            'userRepos',
-            'styles',
-            'preview'
         ));
     }
 }
